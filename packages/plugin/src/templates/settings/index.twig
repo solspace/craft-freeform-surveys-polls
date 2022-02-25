@@ -1,0 +1,37 @@
+{% extends "freeform/_layouts/settings" %}
+
+{% import "_includes/forms" as forms %}
+
+{% set title = "Surveys & Polls"|t("freeform-surveys") %}
+
+{% block content %}
+
+    <input type="hidden" name="action" value="freeform-surveys-polls/settings/save">
+    {{ redirectInput('freeform/settings/form-types/surveys-and-polls') }}
+    {{ csrfInput() }}
+
+    <h2 class="first">{{ "Surveys & Polls"|t('freeform-surveys') }}</h2>
+
+    {% for key, options in settings.charts %}
+
+        {{ forms.selectField({
+            label: settings.labels[key]~" default chart"|t('freeform-surveys'),
+            instructions: "The default chart type to be used for all fields of this type. They can be overridden per form in the reports page."|t("freeform-surveys"),
+            name: "chartDefaults["~key~"]",
+            value: settings.chartDefaults[key],
+            options: options,
+        }) }}
+
+    {% endfor %}
+
+    <hr>
+
+    {{ forms.lightswitchField({
+        label: "Highlight highest ranking option?"|t('freeform-surveys'),
+        instructions: "When enabled, Freeform will highlight the highest ranking option chosen for each question with an alternate color."|t('freeform-surveys'),
+        name: "highlightHighest",
+        on: settings.highlightHighest,
+        errors: settings.errors("highlightHighest"),
+    }) }}
+
+{% endblock %}

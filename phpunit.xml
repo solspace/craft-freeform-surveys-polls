@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  ~ Freeform Surveys & Polls plugin for Craft CMS 3.x
+  ~
+  ~ @link      https://solspace.com
+  ~ @copyright Copyright (c) 2022 Solspace
+  -->
+
+<phpunit
+        bootstrap="packages/plugin/tests/unit/_bootstrap.php"
+        colors="false"
+>
+    <testsuites>
+        <testsuite name="Unit Tests">
+            <directory>packages/plugin/tests/unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="APP_ENV" value="test"/>
+    </php>
+</phpunit>

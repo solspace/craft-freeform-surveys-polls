@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../plugin/src/Resources/js/app/",
+    "jsx": "react",
+    "lib": ["ES6", "DOM"],
+    "resolveJsonModule": true,
+    "paths": {
+      "@survey-app/*": ["app/src/*"],
+      "@survey-results/*": ["app/src/survey-results/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

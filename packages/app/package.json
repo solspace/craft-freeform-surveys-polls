@@ -1,0 +1,67 @@
+{
+  "name": "@survey/app",
+  "version": "1.0.0",
+  "description": "Survey App",
+  "scripts": {
+    "dev": "npm run clean && npm run watch",
+    "build": "npm run clean && NODE_ENV=production npm run compile",
+    "watch": "webpack --watch",
+    "clean": "rm -rf ../plugin/src/Resources/js/app",
+    "compile": "webpack",
+    "lint": "eslint -c .eslintrc.json .",
+    "lint:fix": "eslint -c .eslintrc.json . --fix",
+    "test": "jest --maxWorkers=4",
+    "test:coverage": "jest --maxWorkers=4 --collect-coverage",
+    "test:watch": "jest --watch --maxWorkers=4"
+  },
+  "keywords": [
+    "Freeform",
+    "Craft CMS",
+    "Surveys & Polls"
+  ],
+  "author": "Solspace Inc.",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "browserslist": "^4.17.0",
+    "chart.js": "^3.7.0",
+    "chartjs-adapter-date-fns": "^2.0.0",
+    "d3-scale-chromatic": "^3.0.0",
+    "date-fns": "^2.28.0",
+    "html2canvas": "^1.4.1",
+    "js-file-download": "^0.4.12",
+    "path-parse": "^1.0.7",
+    "react": "^16.13.1",
+    "react-chartjs-2": "^4.0.1",
+    "react-custom-scrollbars": "^4.2.1",
+    "react-dom": "^16.13.1",
+    "react-transition-group": "^4.4.1",
+    "recoil": "^0.1.2",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^6.1.2",
+    "@types/d3-scale-chromatic": "^3.0.0",
+    "@types/html2canvas": "^1.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-custom-scrollbars": "^4.0.10",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-transition-group": "^4.4.0",
+    "@types/styled-components": "^5.1.6",
+    "@types/webpack": "^4.41.25",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "identity-obj-proxy": "^3.0.0",
+    "terser-webpack-plugin": "^5.0.3",
+    "ts-loader": "^8.0.12",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.11.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not IE_Mob 11",
+    "last 2 versions"
+  ]
+}

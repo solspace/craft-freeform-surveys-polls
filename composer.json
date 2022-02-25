@@ -1,0 +1,66 @@
+{
+  "name": "solspace/craft-freeform-surveys-polls",
+  "description": "Adds support for the Surveys & Polls form type in Freeform.",
+  "type": "craft-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Solspace",
+      "homepage": "https://solspace.com"
+    }
+  ],
+  "require": {
+    "solspace/craft-freeform": "^3.13.0",
+    "craftcms/cms": "^3.5.0",
+    "tecnickcom/tcpdf": "^6.4"
+  },
+  "require-dev": {
+    "vlucas/phpdotenv": "^3.0",
+    "phpunit/phpunit": "^9.5.11",
+    "friendsofphp/php-cs-fixer": "^3.4.0",
+    "brainmaestro/composer-git-hooks": "^2.8.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Solspace\\SurveysPolls\\": "packages/plugin/src/",
+      "Solspace\\Tests\\SurveysPolls\\Unit\\": "packages/plugin/tests/unit/"
+    }
+  },
+  "extra": {
+    "name": "Freeform Surveys & Polls",
+    "handle": "freeform-surveys-polls",
+    "developer": "Solspace",
+    "developerUrl": "https://docs.solspace.com",
+    "documentationUrl": "https://docs.solspace.com/craft/freeform/v3/form-types/surveys-polls/",
+    "changelogUrl": "https://raw.githubusercontent.com/solspace/craft-freeform-surveys-polls/master/CHANGELOG.md",
+    "class": "Solspace\\SurveysPolls\\SurveysPolls",
+    "hooks": {
+      "pre-commit": [
+        "set -e",
+        "printf '\\n\\e[32m######### Validating Composer #########\\e[0m\\n\\n'",
+        "composer validate",
+        "printf '\\n\\e[32m######### Running CS Fixer dry run #########\\e[0m\\n\\n'",
+        "composer run fix:dry-run || (printf \"\\e[41mCS Fixer found issues\\e[0m\\n\" && exit 1)"
+      ],
+      "pre-push": [
+        "set -e",
+        "printf '\\n\\e[32m######### Running Unit Tests #########\\e[0m\\n\\n'",
+        "composer run test:unit"
+      ],
+      "post-merge": [
+        "composer install"
+      ]
+    }
+  },
+  "scripts": {
+    "test": [
+      "@test:unit"
+    ],
+    "test:unit": "vendor/bin/phpunit --configuration ./phpunit.xml",
+    "fix": "vendor/bin/php-cs-fixer fix --diff",
+    "fix:dry-run": "vendor/bin/php-cs-fixer fix --dry-run --diff",
+    "cghooks": "vendor/bin/cghooks",
+    "post-install-cmd": "cghooks add --ignore-lock",
+    "post-update-cmd": "cghooks update"
+  }
+}

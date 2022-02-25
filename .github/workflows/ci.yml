@@ -1,0 +1,39 @@
+name: Continous Integration
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    name: PHP Unit tests
+
+    strategy:
+      matrix:
+        php-versions: ['7.4']
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: curl, mbstring
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      # Cache the vendors directory to spend less resources on each run
+      - name: Cache vendors
+        uses: actions/cache@v1
+        with:
+          path: vendor/
+          key: vendors-${{ hashFiles('**/composer.lock') }}
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run Unit Tests
+        run: composer run-script test:unit

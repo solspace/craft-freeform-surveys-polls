@@ -1,0 +1,32 @@
+{% extends "freeform/_layouts/main" %}
+{% hook "freeform.prepareCpTemplate" %}
+
+{% set title = "Surveys & Polls"|t('freeform') %}
+{% set selectedSubnavItem = "surveys-and-polls" %}
+
+{% set content %}
+
+    <div class="dashboard">
+
+        <div class="row">
+            <div class="col-xs-12">
+                {% include "freeform/dashboard/_charts" with {
+                    fragmentTitle: 'Responses',
+                    disableLinks: true,
+                } %}
+            </div>
+        </div>
+
+        {% if currentUser.can("freeform-formsAccess") %}
+            <div class="row">
+                <div class="col-xs-12">
+                    {% include "freeform-surveys-polls/surveys/_forms" with {
+                        fragmentTitle: 'Surveys & Polls',
+                    } %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+
+{% endset %}

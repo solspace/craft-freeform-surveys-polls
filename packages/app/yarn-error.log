@@ -1,0 +1,91 @@
+Arguments: 
+  /Users/gustavs/.volta/tools/image/node/14.15.5/bin/node /Users/gustavs/.volta/tools/image/yarn/1.22.10/bin/yarn.js add simple-import-sort
+
+PATH: 
+  /Users/gustavs/.volta/tools/image/yarn/1.22.10/bin:/Users/gustavs/.volta/tools/image/node/14.15.5/bin:/Users/gustavs/.volta/bin:/Users/gustavs/.volta/bin:/opt/homebrew/bin:/usr/local/opt/php@7.4/sbin:/usr/local/opt/php@7.4/bin:/usr/local/opt/curl/bin:/Users/gustavs/.cargo/bin:/Users/gustavs/.nvm/versions/node/v14.15.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.5
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/simple-import-sort: Not found
+      at Request.params.callback [as _callback] (/Users/gustavs/.volta/tools/image/yarn/1.22.10/lib/cli.js:66988:18)
+      at Request.self.callback (/Users/gustavs/.volta/tools/image/yarn/1.22.10/lib/cli.js:140662:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/Users/gustavs/.volta/tools/image/yarn/1.22.10/lib/cli.js:141634:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/Users/gustavs/.volta/tools/image/yarn/1.22.10/lib/cli.js:141556:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "@ff/app",
+    "version": "1.0.0",
+    "description": "Freeform App",
+    "scripts": {
+      "dev": "npm run clean && npm run watch",
+      "build": "npm run clean && NODE_ENV=production npm run compile",
+      "watch": "webpack --watch",
+      "clean": "rm -rf ../plugin/src/Resources/js/app",
+      "compile": "webpack",
+      "lint": "eslint -c .eslintrc.json .",
+      "test": "jest --maxWorkers=4",
+      "test:coverage": "jest --maxWorkers=4 --collect-coverage",
+      "test:watch": "jest --watch --maxWorkers=4"
+    },
+    "keywords": [
+      "Freeform",
+      "Craft CMS",
+      "App"
+    ],
+    "author": "Solspace Inc.",
+    "license": "MIT",
+    "dependencies": {
+      "axios": "^0.21.0",
+      "react": "^16.13.1",
+      "react-dom": "^16.13.1",
+      "react-transition-group": "^4.4.1",
+      "recoil": "^0.1.2",
+      "styled-components": "^5.2.1"
+    },
+    "devDependencies": {
+      "@svgr/webpack": "^5.5.0",
+      "@types/react": "^17.0.0",
+      "@types/react-dom": "^17.0.0",
+      "@types/react-transition-group": "^4.4.0",
+      "@types/styled-components": "^5.1.6",
+      "@types/webpack": "^4.41.25",
+      "@typescript-eslint/eslint-plugin": "^4.8.1",
+      "@typescript-eslint/parser": "^4.8.1",
+      "autoprefixer": "^10.1.0",
+      "css-loader": "^5.0.1",
+      "identity-obj-proxy": "^3.0.0",
+      "style-loader": "^2.0.0",
+      "terser-webpack-plugin": "^5.0.3",
+      "ts-loader": "^8.0.12",
+      "url-loader": "^4.1.1",
+      "webpack": "^5.11.0",
+      "webpack-cli": "^4.2.0"
+    },
+    "browserslist": [
+      "defaults",
+      "not IE 11",
+      "not IE_Mob 11",
+      "last 2 versions"
+    ]
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
