@@ -29,6 +29,7 @@
   "extra": {
     "name": "Freeform Surveys & Polls",
     "handle": "freeform-surveys-polls",
+    "schemaVersion": "1.0.0",
     "developer": "Solspace",
     "developerUrl": "https://docs.solspace.com",
     "documentationUrl": "https://docs.solspace.com/craft/freeform/v3/form-types/surveys-polls/",
