@@ -1,4 +1,4 @@
-# Solspace Freeform & Surveys & Polls plugin for Craft CMS 3.x
+# Solspace Freeform & Surveys & Polls plugin for Craft CMS 4.x
 
 Adds support for the [Surveys & Polls](https://plugins.craftcms.com/freeform-surveys-polls) form type in Freeform.
 
@@ -12,10 +12,10 @@ Expand the possibilities of [Freeform](https://plugins.craftcms.com/freeform) wi
 
 - [Buy Freeform Surveys & Polls at the Plugin Store](https://plugins.craftcms.com/freeform-surveys-polls)
 - [Buy Freeform at the Plugin Store](https://plugins.craftcms.com/freeform)
-- [Freeform Surveys & Polls Documentation](https://docs.solspace.com/craft/freeform/v3/form-types/surveys-polls)
-- [Freeform Documentation](https://docs.solspace.com/craft/freeform/v3/)
-- [Report an Issue](https://github.com/solspace/craft3-freeform/issues)
-- [Feature Requests](https://github.com/solspace/craft3-freeform/discussions)
-- [Ask a Question](https://github.com/solspace/craft3-freeform/discussions)
-- [Private Support Ticket](https://docs.solspace.com/craft/freeform/v3/support.html)
+- [Freeform Surveys & Polls Documentation](https://docs.solspace.com/craft/freeform/v4/form-types/surveys-polls)
+- [Freeform Documentation](https://docs.solspace.com/craft/freeform/v4/)
+- [Report an Issue](https://github.com/solspace/craft-freeform/issues)
+- [Feature Requests](https://github.com/solspace/craft-freeform/discussions)
+- [Ask a Question](https://github.com/solspace/craft-freeform/discussions)
+- [Private Support Ticket](https://docs.solspace.com/craft/freeform/v4/support.html)
 - [Craft Stack Exchange](https://craftcms.stackexchange.com/questions/tagged/solspace)
