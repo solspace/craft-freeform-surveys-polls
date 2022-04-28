@@ -2,7 +2,7 @@
   "name": "solspace/craft-freeform-surveys-polls",
   "description": "Adds support for the Surveys & Polls form type in Freeform.",
   "type": "craft-plugin",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-beta.1",
   "authors": [
     {
       "name": "Solspace",
