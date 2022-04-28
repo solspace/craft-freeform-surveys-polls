@@ -15,11 +15,9 @@ use Solspace\SurveysPolls\SurveyResults\Collections\FieldTotalsCollection;
 
 class FormTotals implements CollectionInterface, \IteratorAggregate, \Countable, \ArrayAccess, \JsonSerializable
 {
-    /** @var Form */
-    private $form;
+    private Form $form;
 
-    /** @var FieldTotalsCollection */
-    private $fieldTotals;
+    private FieldTotalsCollection $fieldTotals;
 
     public function __construct(Form $form)
     {
@@ -35,6 +33,7 @@ class FormTotals implements CollectionInterface, \IteratorAggregate, \Countable,
     public function getVotes(): int
     {
         $votes = 0;
+
         /** @var FieldTotals $totals */
         foreach ($this->getFieldTotals() as $totals) {
             $votes += $totals->getVotes();
@@ -48,7 +47,7 @@ class FormTotals implements CollectionInterface, \IteratorAggregate, \Countable,
         return $this->fieldTotals;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $submissionService = Freeform::getInstance()->submissions;
         $formIds = [$this->form->getId()];
@@ -70,12 +69,12 @@ class FormTotals implements CollectionInterface, \IteratorAggregate, \Countable,
         ];
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable|array|\ArrayIterator
     {
         return $this->fieldTotals->getIterator();
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->fieldTotals->offsetExists($offset);
     }
@@ -95,7 +94,7 @@ class FormTotals implements CollectionInterface, \IteratorAggregate, \Countable,
         $this->fieldTotals->offsetUnset($offset);
     }
 
-    public function count()
+    public function count(): int
     {
         return $this->fieldTotals->count();
     }

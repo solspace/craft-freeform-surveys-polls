@@ -4,15 +4,15 @@ namespace Solspace\SurveysPolls\SurveyResults\DataObjects;
 
 class AnswerBreakdown implements \JsonSerializable
 {
-    private $fieldTotals;
+    private FieldTotals $fieldTotals;
 
-    private $label;
+    private string $label;
 
-    private $value;
+    private string $value;
 
-    private $votes;
+    private int $votes;
 
-    private $ranking;
+    private ?int $ranking;
 
     public function __construct(FieldTotals $fieldTotals, string $label, string $value)
     {
@@ -20,6 +20,7 @@ class AnswerBreakdown implements \JsonSerializable
         $this->label = $label;
         $this->value = $value;
         $this->votes = 0;
+        $this->ranking = null;
     }
 
     public function getLabel(): string
@@ -66,7 +67,7 @@ class AnswerBreakdown implements \JsonSerializable
         return (float) number_format($percentage, 2, '.', '');
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'label' => $this->getLabel(),

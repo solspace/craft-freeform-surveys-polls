@@ -1,5 +1,5 @@
 export const baseUrl = window.location.href.replace(/.*(\/[^/]+\/freeform).*/i, '$1');
-export const segments = window.location.href.replace(/.*\/[^/]+\/freeform\/(.*)/i, '$1').split('/');
+export const segments = window.location.href.replace(/.*\/[^/]+\/freeform\/([^?]*)?(\?.*)?/i, '$1').split('/');
 
 export const generateUrl = (url?: string): string => {
   url = (url ?? '')

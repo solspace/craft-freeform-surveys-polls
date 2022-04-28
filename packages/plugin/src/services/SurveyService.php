@@ -52,24 +52,32 @@ class SurveyService extends Component
         WebsiteField::class,
     ];
 
-    private $formTotalsCache = [];
+    private array $formTotalsCache = [];
 
     public function getFormTotals(Form $form): FormTotals
     {
         if (!isset($this->formTotalsCache[$form->getId()])) {
+            $contentTable = Submission::getContentTableName($form);
+
+            $fields = $this->getProcessableFields($form);
+            $searchableFields = array_map(
+                fn (FieldInterface $field) => 'sc.[['.Submission::getFieldColumnName($field).']]',
+                $fields
+            );
+
             $query = (new Query())
-                ->select('*')
-                ->from(Submission::TABLE)
+                ->select(['s.id', ...$searchableFields])
+                ->from(Submission::TABLE.' s')
+                ->innerJoin("{$contentTable} sc", 'sc.[[id]] = s.[[id]]')
                 ->where([
-                    'formId' => $form->getId(),
-                    'isSpam' => false,
+                    's.[[formId]]' => $form->getId(),
+                    's.[[isSpam]]' => false,
                 ])
             ;
 
             $formTotals = new FormTotals($form);
             $fieldTotalsCollection = $formTotals->getFieldTotals();
 
-            $fields = $this->getProcessableFields($form);
             foreach ($fields as $field) {
                 $fieldTotalsCollection->add(new FieldTotals($field));
             }
@@ -82,7 +90,7 @@ class SurveyService extends Component
                             continue;
                         }
 
-                        $column = Submission::getFieldColumnName($field->getId());
+                        $column = Submission::getFieldColumnName($field);
                         $valueArray = $row[$column] ?? null;
 
                         if ($field instanceof MultipleValueInterface) {
@@ -223,7 +231,7 @@ class SurveyService extends Component
     private function getProcessableFields(Form $form): array
     {
         $fieldList = [];
-        foreach ($form->getLayout()->getFields() as $field) {
+        foreach ($form->getLayout()->getStorableFields() as $field) {
             if (\in_array(\get_class($field), self::ALLOWED_FIELD_TYPES, true)) {
                 $fieldList[] = $field;
             }

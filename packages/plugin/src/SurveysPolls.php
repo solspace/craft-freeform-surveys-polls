@@ -39,17 +39,9 @@ class SurveysPolls extends Plugin
     public const PERMISSION_SURVEYS_ACCESS = 'freeform-surveys-access';
     public const PERMISSION_REPORTS_MANAGE = 'freeform-reports-manage';
 
-    /** @var SurveysPolls */
-    public static $plugin;
+    public static SurveysPolls $plugin;
 
-    /** @var string */
-    public $schemaVersion = '1.0.0';
-
-    /** @var bool */
-    public $hasCpSettings = true;
-
-    /** @var bool */
-    public $hasCpSection = false;
+    public bool $hasCpSettings = true;
 
     public static function t(string $message, array $params = [], string $language = null): string
     {
@@ -92,29 +84,35 @@ class SurveysPolls extends Plugin
             }
         );
 
-        if (PermissionHelper::checkPermission(self::PERMISSION_SURVEYS_ACCESS)) {
-            Event::on(
-                Freeform::class,
-                Freeform::EVENT_REGISTER_SUBNAV_ITEMS,
-                function (RegisterCpSubnavItemsEvent $event) {
-                    $event->addSubnavItem(
-                        'surveys-and-polls',
-                        'Surveys & Polls',
-                        UrlHelper::cpUrl('freeform/surveys-and-polls'),
-                        'forms'
-                    );
+        Event::on(
+            Freeform::class,
+            Freeform::EVENT_REGISTER_SUBNAV_ITEMS,
+            function (RegisterCpSubnavItemsEvent $event) {
+                if (!PermissionHelper::checkPermission(self::PERMISSION_SURVEYS_ACCESS)) {
+                    return;
                 }
-            );
 
-            Event::on(
-                SettingsService::class,
-                SettingsService::EVENT_REGISTER_SETTINGS_NAVIGATION,
-                function (RegisterSettingsNavigationEvent $event) {
-                    $event->addHeader('form-types', Freeform::t('Form Types'), 'demo-templates');
-                    $event->addNavigationItem('form-types/surveys-and-polls', 'Surveys & Polls', 'form-types');
+                $event->addSubnavItem(
+                    'surveys-and-polls',
+                    'Surveys & Polls',
+                    UrlHelper::cpUrl('freeform/surveys-and-polls'),
+                    'forms'
+                );
+            }
+        );
+
+        Event::on(
+            SettingsService::class,
+            SettingsService::EVENT_REGISTER_SETTINGS_NAVIGATION,
+            function (RegisterSettingsNavigationEvent $event) {
+                if (!PermissionHelper::checkPermission(self::PERMISSION_SURVEYS_ACCESS)) {
+                    return;
                 }
-            );
-        }
+
+                $event->addHeader('form-types', Freeform::t('Form Types'), 'demo-templates');
+                $event->addNavigationItem('form-types/surveys-and-polls', 'Surveys & Polls', 'form-types');
+            }
+        );
 
         Event::on(
             FieldsService::class,
@@ -145,14 +143,10 @@ class SurveysPolls extends Plugin
                         ],
                     ];
 
-                    if (!isset($event->permissions[Freeform::PERMISSION_NAMESPACE])) {
-                        $event->permissions[Freeform::PERMISSION_NAMESPACE] = [];
-                    }
-
-                    $event->permissions[Freeform::PERMISSION_NAMESPACE] = array_merge(
-                        $event->permissions[Freeform::PERMISSION_NAMESPACE],
-                        $permissions
-                    );
+                    $event->permissions[] = [
+                        'heading' => $this->name,
+                        'permissions' => $permissions,
+                    ];
                 }
             );
         }

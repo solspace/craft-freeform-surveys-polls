@@ -12,7 +12,7 @@ use craft\web\Controller;
 
 class ExportController extends Controller
 {
-    public function actionPdf()
+    public function actionPdf(): void
     {
         $images = \Craft::$app->request->post('imageData');
 
@@ -23,7 +23,7 @@ class ExportController extends Controller
         $pdf->setJPEGQuality(75);
 
         foreach ($images as $image) {
-            list($_, $encoded) = explode(',', $image);
+            [$_, $encoded] = explode(',', $image);
             $decoded = base64_decode($encoded);
 
             $pdf->AddPage();
@@ -50,7 +50,7 @@ class ExportController extends Controller
         foreach ($images as $image) {
             $name = (++$count).'_field.jpg';
 
-            list($_, $encoded) = explode(',', $image);
+            [$_, $encoded] = explode(',', $image);
             $decoded = base64_decode($encoded);
 
             $zip->addFromString($name, $decoded);

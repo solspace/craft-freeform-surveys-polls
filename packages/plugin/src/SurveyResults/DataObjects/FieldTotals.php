@@ -18,14 +18,11 @@ class FieldTotals implements \JsonSerializable, \IteratorAggregate, \Countable, 
 {
     private const RANK_BY_TOP_FIELDS = [TextField::class, TextareaField::class];
 
-    /** @var FieldInterface */
-    private $field;
+    private FieldInterface $field;
 
-    /** @var AnswerBreakdown[]|AnswerBreakdownCollection */
-    private $breakdown;
+    private AnswerBreakdownCollection $breakdown;
 
-    /** @var int */
-    private $skipped;
+    private int $skipped;
 
     public function __construct(FieldInterface $field)
     {
@@ -124,12 +121,12 @@ class FieldTotals implements \JsonSerializable, \IteratorAggregate, \Countable, 
         ];
     }
 
-    public function getIterator()
+    public function getIterator(): \Traversable|array|\ArrayIterator
     {
         return $this->breakdown->getIterator();
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->breakdown->offsetExists($offset);
     }
@@ -149,7 +146,7 @@ class FieldTotals implements \JsonSerializable, \IteratorAggregate, \Countable, 
         $this->breakdown->offsetUnset($offset);
     }
 
-    public function count()
+    public function count(): int
     {
         return $this->breakdown->count();
     }

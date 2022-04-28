@@ -26,7 +26,7 @@ use yii\web\NotFoundHttpException;
 
 class SurveysController extends Controller
 {
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -177,7 +177,7 @@ class SurveysController extends Controller
         ]);
     }
 
-    public function actionResponseData(string $handle)
+    public function actionResponseData(string $handle): Response
     {
         $form = $this->getForm($handle);
 

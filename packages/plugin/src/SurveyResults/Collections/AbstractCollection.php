@@ -12,7 +12,7 @@ use Solspace\SurveysPolls\Exceptions\SurveysPollsException;
 
 abstract class AbstractCollection implements CollectionInterface, \IteratorAggregate, \Countable, \ArrayAccess, \JsonSerializable
 {
-    protected $list = [];
+    protected array $list = [];
 
     public function asArray(): array
     {
@@ -34,7 +34,7 @@ abstract class AbstractCollection implements CollectionInterface, \IteratorAggre
         return \count($this->list);
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->list[$offset]);
     }
@@ -44,25 +44,14 @@ abstract class AbstractCollection implements CollectionInterface, \IteratorAggre
         return $this->list[$offset];
     }
 
-    /**
-     * @param mixed $offset
-     * @param mixed $value
-     *
-     * @throws SurveysPollsException
-     */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value)
     {
         throw new SurveysPollsException(
             'Cannot set properties directly on Collection. Use ::app() and ::remove() methods'
         );
     }
 
-    /**
-     * @param mixed $offset
-     *
-     * @throws SurveysPollsException
-     */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset)
     {
         throw new SurveysPollsException('Cannot delete properties from Property Collection directly. Use ::remove() instead');
     }

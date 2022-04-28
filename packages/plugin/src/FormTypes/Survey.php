@@ -26,10 +26,7 @@ class Survey extends Form
         return [];
     }
 
-    /**
-     * @return null|FieldTotals|FormTotals
-     */
-    public function getSurveyResults(FieldInterface $field = null)
+    public function getSurveyResults(FieldInterface $field = null): FormTotals|FieldTotals|null
     {
         $formTotals = SurveysPolls::$plugin->surveys->getFormTotals($this);
         if (null === $field) {
