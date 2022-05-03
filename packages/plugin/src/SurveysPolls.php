@@ -105,6 +105,11 @@ class SurveysPolls extends Plugin
             SettingsService::class,
             SettingsService::EVENT_REGISTER_SETTINGS_NAVIGATION,
             function (RegisterSettingsNavigationEvent $event) {
+                $allowAdminChanges = \Craft::$app->getConfig()->getGeneral()->allowAdminChanges;
+                if (!$allowAdminChanges) {
+                    return;
+                }
+
                 if (!PermissionHelper::checkPermission(self::PERMISSION_SURVEYS_ACCESS)) {
                     return;
                 }
