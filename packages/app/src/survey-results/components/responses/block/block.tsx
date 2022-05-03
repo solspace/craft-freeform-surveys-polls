@@ -59,14 +59,7 @@ export const Block: React.FC<Props> = ({ field, responses, breakdown, skipped, b
   const ref = useRef<HTMLLIElement>();
 
   useEffect(() => {
-    let chartType = settings.chartType;
-    if (!textTypes.includes(field.type)) {
-      if (breakdown.length > 10) {
-        chartType = Chart.Horizontal;
-      }
-    }
-
-    setChartType(chartType);
+    setChartType(settings.chartType);
   }, []);
 
   useEffect(() => {

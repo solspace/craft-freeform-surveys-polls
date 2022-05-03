@@ -35,6 +35,7 @@ class FormTotals implements CollectionInterface, \IteratorAggregate, \Countable,
     public function getVotes(): int
     {
         $votes = 0;
+
         /** @var FieldTotals $totals */
         foreach ($this->getFieldTotals() as $totals) {
             $votes += $totals->getVotes();
