@@ -110,6 +110,11 @@ class SurveysPolls extends Plugin
                 SettingsService::class,
                 SettingsService::EVENT_REGISTER_SETTINGS_NAVIGATION,
                 function (RegisterSettingsNavigationEvent $event) {
+                    $allowAdminChanges = \Craft::$app->getConfig()->getGeneral()->allowAdminChanges;
+                    if (!$allowAdminChanges) {
+                        return;
+                    }
+
                     $event->addHeader('form-types', Freeform::t('Form Types'), 'demo-templates');
                     $event->addNavigationItem('form-types/surveys-and-polls', 'Surveys & Polls', 'form-types');
                 }
