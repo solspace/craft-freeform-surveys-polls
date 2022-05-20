@@ -11,6 +11,7 @@ namespace Solspace\SurveysPolls\services;
 use Carbon\Carbon;
 use craft\db\Query;
 use craft\db\Table;
+use craft\records\Element;
 use Solspace\Freeform\Elements\Submission;
 use Solspace\Freeform\Fields\CheckboxGroupField;
 use Solspace\Freeform\Fields\EmailField;
@@ -57,6 +58,8 @@ class SurveyService extends Component
     public function getFormTotals(Form $form): FormTotals
     {
         if (!isset($this->formTotalsCache[$form->getId()])) {
+            $submissionsTable = Submission::TABLE;
+            $elementsTable = Element::tableName();
             $contentTable = Submission::getContentTableName($form);
 
             $fields = $this->getProcessableFields($form);
@@ -67,8 +70,12 @@ class SurveyService extends Component
 
             $query = (new Query())
                 ->select(['s.id', ...$searchableFields])
-                ->from(Submission::TABLE.' s')
+                ->from($submissionsTable.' s')
                 ->innerJoin("{$contentTable} sc", 'sc.[[id]] = s.[[id]]')
+                ->innerJoin(
+                    $elementsTable,
+                    "{$elementsTable}.[[id]] = s.[[id]] AND {$elementsTable}.[[dateDeleted]] IS NULL"
+                )
                 ->where([
                     's.[[formId]]' => $form->getId(),
                     's.[[isSpam]]' => false,
