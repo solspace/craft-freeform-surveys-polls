@@ -1,5 +1,10 @@
 # Solspace Freeform Surveys & Polls Changelog
 
+## 2.0.0-beta.3 - 2022-05-24
+
+### Fixed
+- Fixed a bug where soft-deleted submissions would be included in report charts and stats.
+
 ## 2.0.0-beta.2 - 2022-05-05
 
 ### Fixed
@@ -10,6 +15,11 @@
 
 ### Added
 - Added compatibility with Craft 4.x and Freeform 4.x.
+
+## 1.0.2 - 2022-05-24
+
+### Fixed
+- Fixed a bug where soft-deleted submissions would be included in report charts and stats.
 
 ## 1.0.1 - 2022-05-05
 
