@@ -1,5 +1,10 @@
 # Solspace Freeform Surveys & Polls Changelog
 
+## 1.0.2 - 2022-05-24
+
+### Fixed
+- Fixed a bug where soft-deleted submissions would be included in report charts and stats.
+
 ## 1.0.1 - 2022-05-05
 
 ### Fixed
