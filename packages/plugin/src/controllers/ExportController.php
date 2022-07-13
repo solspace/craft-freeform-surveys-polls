@@ -34,7 +34,7 @@ class ExportController extends Controller
 
         $pdf->Output('some_pdf');
 
-        exit();
+        exit;
     }
 
     public function actionImages()
