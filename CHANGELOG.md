@@ -1,5 +1,10 @@
 # Solspace Freeform Surveys & Polls Changelog
 
+## 2.0.0 - 2022-07-20
+
+### Changed
+- Updated dashboard to hide forms for users that do not have any form or submission access permissions to them.
+
 ## 2.0.0-beta.3 - 2022-05-24
 
 ### Fixed
@@ -15,6 +20,11 @@
 
 ### Added
 - Added compatibility with Craft 4.x and Freeform 4.x.
+
+## 1.0.3 - 2022-07-20
+
+### Changed
+- Updated dashboard to hide forms for users that do not have any form or submission access permissions to them.
 
 ## 1.0.2 - 2022-05-24
 
